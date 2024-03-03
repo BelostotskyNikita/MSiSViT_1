@@ -14,8 +14,8 @@ namespace MSiSViT_1
 
             this.Label_Dictionary.Text = "Eta = " + (OperandsParsed.Count + OperatorsParsed.Count).ToString();
             this.Label_Length.Text = "N = " + (OperandsParsed.Select(t => t.Item2).Sum() + OperatorsParsed.Select(t => t.Item2).Sum()).ToString();
-            this.Label_Volume.Text = "V = " + (OperandsParsed.Select(t => t.Item2).Sum() + OperatorsParsed.Select(t => t.Item2).Sum() *
-                Math.Log((OperandsParsed.Count + OperatorsParsed.Count),2)).ToString();
+            this.Label_Volume.Text = "V = " + ((OperandsParsed.Select(t => t.Item2).Sum() + OperatorsParsed.Select(t => t.Item2).Sum()) *
+                Math.Log2(OperandsParsed.Count + OperatorsParsed.Count)).ToString();
 
             this.dataGridView1.Rows.Clear();
             this.dataGridView2.Rows.Clear();
