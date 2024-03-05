@@ -23,7 +23,7 @@ namespace MSiSViT_1
 
         private static List<Tuple<string, int>> CountOperators(string code)
         {
-            string[] operators = { "+", "-", "*", "/", "%", ">", "<", "==", "!=", "&&", "||", "**", "<>", "<=", ">=", "!", "++", "--", "+=", "->", "//", ".", "(" };
+            string[] operators = { "+", "-", "*", "/", "%", ">", "<", "==", "!=", "&&", "||", "**", "<>", "<=", ">=", "!", "++", "--", "+=", "->", "//", "." };
             Dictionary<string, int> operatorCounts = new Dictionary<string, int>();
             foreach (string line in code.Split('\n'))
                 foreach (string op in operators)
@@ -46,8 +46,7 @@ namespace MSiSViT_1
 
         private static int BracketParse(string phpcode)
         {
-            string pattern = @"((?<!(\w+)(\s+)?)(\())";
-            Regex regex = new Regex(pattern);
+            Regex regex = new Regex(@"((?<!(\w+)(\s+)?)(\())");
             return regex.Matches(phpcode).Count;
         }
 
@@ -172,9 +171,16 @@ namespace MSiSViT_1
                 res1.Add(item);
             foreach (var item in res3)
                 res1.Add(item);
+            for (int i = 0; i < res1.Count; i++)
+            {
+                if (res1[i].Item2 == 0)
+                {
+                    res1.RemoveAt(i);
+                }
+            }
             return res1;
         }
 
-        
+
     }
 }
